@@ -3,6 +3,8 @@ name = "cv-creator"
 version = "1.0.0"
 description = "Tailored LaTeX CVs built from sense-making career interviews conducted by a Claude agent."
 readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
 requires-python = ">=3.10"
 dependencies = [
     "jinja2>=3.1",

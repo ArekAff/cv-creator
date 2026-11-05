@@ -235,3 +235,9 @@ as described above.
   ```
 - Tests: `uv run pytest` (pytest is in the `dev` dependency group that `uv sync` installs).
 - Adding a dependency: `uv add <package>` (updates `pyproject.toml` and `uv.lock`); don't use pip.
+
+## Licence
+
+The project's own code and docs are under the [MIT licence](LICENSE). The layouts in `cv-templates/`,
+and the renderers and classes in `templates/` based on them, keep their original licences: see
+[Layout credits](#layout-credits).
