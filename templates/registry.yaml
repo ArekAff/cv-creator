@@ -1,0 +1,137 @@
+# Built-in CV layouts, rendered from cv.yaml by `uv run cv render`.
+# Each id has a folder templates/<id>/ with main.tex.j2 (+ extra *.j2, + files/ copied verbatim).
+# The originals they reproduce are in cv-templates/. Selection guidance: method/template-selection.md
+#
+# Fields used by the tools: name, engine, default_paper, default_font_size, default_order, options.
+# Fields used by the agent when recommending: look, columns, ats, photo, color, best_for, less_suited, notes.
+
+jakes:
+  name: Jake's Resume
+  original: cv-templates/Jakes_Resume.tex
+  engine: pdflatex
+  columns: 1
+  ats: high
+  photo: false
+  color: none
+  default_paper: letter
+  default_font_size: 11pt
+  default_order: [summary, experience, projects, education, skills, certifications, languages, awards,
+                  publications, volunteering, competencies, achievements, interests, custom, references]
+  look: Classic one-column résumé in black and white; small-caps section titles with rules; dense and scannable.
+  best_for: [software and IT, engineering, data and analytics, internships and graduate roles,
+             large companies that screen with an ATS]
+  less_suited: [roles that expect visual flair, long academic CVs]
+  notes: Students and graduates can move education to the top with sections_order.
+
+swe:
+  name: SWE Resume
+  original: cv-templates/SWE_Resume_Template.tex
+  engine: pdflatex
+  columns: 1
+  ats: high
+  photo: false
+  color: none
+  default_paper: letter
+  default_font_size: 11pt
+  default_order: [summary, experience, projects, skills, education, certifications, languages, awards,
+                  publications, volunteering, competencies, achievements, interests, custom, references]
+  look: Jake's structure with the Lato sans-serif font and icons in the contact line; a little more modern.
+  best_for: [software engineering, backend/frontend/full-stack, DevOps and cloud, tech start-ups and scale-ups]
+  less_suited: [conservative sectors such as law or banking]
+  notes: The original split its content into src/*.tex and custom-commands.tex; this version is one self-contained file.
+
+minimal:
+  name: Minimal CV
+  original: cv-templates/Minimal_CV_Template.tex
+  engine: pdflatex
+  columns: 1
+  ats: high
+  photo: false
+  color: subtle (name and labels in one accent colour)
+  default_paper: a4
+  default_font_size: 11pt
+  default_order: [summary, competencies, skills, experience, projects, education, certifications, languages,
+                  awards, publications, volunteering, achievements, interests, custom, references]
+  look: Quiet serif page; centred name, a short profile paragraph, "label — description" lines for skills and competencies.
+  best_for: [analyst and research roles, consulting, public sector and NGOs, business generalists,
+             career changers who lead with transferable competencies]
+  less_suited: [roles where a dense project list matters most]
+
+elegant:
+  name: Elegant Resume
+  original: cv-templates/Elegant_resume_template.tex
+  engine: pdflatex
+  columns: 1
+  ats: high
+  photo: false
+  color: navy accents
+  default_paper: a4
+  default_font_size: 11pt
+  default_order: [summary, experience, education, projects, skills, competencies, certifications, languages,
+                  awards, publications, volunteering, achievements, interests, custom, references]
+  look: Formal and institutional; navy name, labelled personal details, uppercase ruled sections, tabular skill blocks.
+  best_for: [finance and banking, law, consulting, research centres, public institutions, formal European applications]
+  less_suited: [young start-ups and creative roles]
+  notes: resume.cls was not included with the original; templates/elegant/files/resume.cls is a compatible reimplementation.
+
+altacv:
+  name: AltaCV
+  original: cv-templates/AltaCV_Template.tex
+  engine: pdflatex
+  columns: 2
+  ats: medium
+  photo: optional
+  color: strong accent colour
+  default_paper: a4
+  default_font_size: 10pt
+  default_order: [summary, experience, projects, volunteering, publications, custom,
+                  achievements, competencies, skills, languages, education, certifications, awards, interests, references]
+  options:
+    column_ratio: 0.6
+    side_sections: [achievements, competencies, skills, languages, education, certifications, awards, interests, references]
+  look: Modern two-column layout with icons, coloured headings, tags, "most proud of" highlights and language ratings.
+  best_for: [start-ups and scale-ups, product, marketing and growth, UX/UI and design-adjacent tech,
+             roles that reward personality, networking and direct referrals]
+  less_suited: [large corporations with strict ATS parsing, very conservative sectors]
+  notes: Uses altacv.cls from CTAN. Publications via biblatex are left out unless requested.
+
+curve:
+  name: Customised CurVe
+  original: cv-templates/A_Customised_CurVe_CV.tex
+  engine: pdflatex
+  columns: 1 (dates in a left key column)
+  ats: medium-high
+  photo: optional
+  color: accent rules
+  default_paper: a4
+  default_font_size: 11pt
+  default_order: [summary, experience, education, publications, projects, skills, competencies, certifications,
+                  languages, awards, volunteering, achievements, interests, custom, references]
+  look: Classic academic CV; dates in a left key column, rubric sections, optional photo, room for publications and referees.
+  best_for: [academia and research, PhD and postdoc positions, scientific institutes, teaching, long multi-page CVs]
+  less_suited: [one-page industry résumés]
+  notes: curve.cls comes from CTAN; settings.sty (not included with the original) is reimplemented in files/.
+
+receive:
+  name: ReCeiVe
+  original: cv-templates/ReCeiVe.tex
+  engine: pdflatex
+  columns: sidebar + main
+  ats: low
+  photo: yes (optional)
+  color: accent colour and grey sidebar
+  default_paper: a4
+  default_font_size: 10pt
+  default_order: [summary, experience, education, projects, competencies, achievements, volunteering, awards,
+                  publications, custom, references, skills, languages, certifications, interests]
+  options:
+    sidebar_position: left
+    # The sidebar is one page tall; the build warns when it overflows. Allowed here: summary, skills,
+    # languages, certifications, competencies, achievements, awards, interests, references.
+    side_sections: [skills, languages, certifications, interests]
+  look: Visual layout with a coloured sidebar (photo, contact, skill bars, languages, interests) and a quote in the header.
+  best_for: [creative and design roles, marketing and communication, hospitality and events,
+             smaller companies, markets where a photo is expected]
+  less_suited: [ATS-heavy corporate pipelines, conservative sectors]
+  notes: The original needs LuaLaTeX and ReCeiVe.cls (not included); files/ReCeiVe.cls is a reimplementation that
+         compiles with pdfLaTeX, XeLaTeX or LuaLaTeX. Skill bars show self-assessed levels; use them sparingly.

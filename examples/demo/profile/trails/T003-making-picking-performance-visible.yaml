@@ -1,0 +1,39 @@
+# DEMO DATA — a trail explored in a gap interview for a logistics job ad.
+id: T003
+title: "Making picking performance visible to shift leaders"
+linked_to: [P03]
+responsibility: "Warehouse KPI reporting for shift leaders"
+why_chosen: "Evidence for requirement R06 (work with operations teams) of the Vantaro Logistics application."
+timeframe: {start: 2021-01, end: 2021-06}
+goal: "Shift leaders who can see picking errors during the shift, not a week later"
+status: explored
+context: >
+  Picking errors were reported weekly from the client's complaints, so shift leaders learned about
+  problems a week after they happened. Two warehouses, eight shift leaders.
+actions:
+  - {id: A1, when: 2021-01, actor: other, action: "Client complains about wrong items in 40 orders in one week"}
+  - {id: A2, when: 2021-01, actor: self, action: "Spends two night shifts on the floor with the shift leaders"}
+  - {id: A3, when: 2021-02, actor: self, action: "Builds an hourly picking-accuracy report from the scanner data in Power BI"}
+  - {id: A4, when: 2021-03, actor: self, action: "Trains the eight shift leaders on the report at shift handover"}
+  - {id: A5, when: 2021-06, actor: self, action: "Compares error rates before and after with the operations manager"}
+gaps:
+  - after: A2
+    situation: "3 a.m., standing next to a shift leader holding a printed list."
+    questions: "What would she need to see, right now, to stop the next error?"
+    emotions: "Respect for how much the leaders juggle."
+    wishes: "Wants the report to fit on the screen next to the scanner station."
+    intentions: "Decides on hourly accuracy per zone, nothing else."
+    quotes: ["If it doesn't fit next to the scanner, it doesn't exist."]
+outcomes:
+  - {text: "Picking errors fell by 18% over the following three months", metric: "−18% picking errors", evidence: user_stated}
+  - {text: "All 8 shift leaders used the hourly report at handover", metric: "8/8 shift leaders", evidence: user_stated}
+competencies:
+  - {name: working with operations teams, evidence: "Two night shifts on the floor before building (A2)"}
+  - {name: training, evidence: "Trained eight shift leaders at handover (A4)"}
+skills_used: [Power BI, Power Query, SQL Server, Excel, training]
+keywords: [warehouse, picking accuracy, operations, logistics KPIs, shift leaders, dashboards, supply chain]
+accomplishments:
+  - "Built an hourly picking-accuracy report from scanner data for 8 shift leaders across two warehouses; picking errors fell 18% within three months"
+  - "Trained all shift leaders to use the report at shift handover after observing two night shifts on the warehouse floor"
+open_questions: []
+sessions: [2026-10-30-gap-interview-vantaro]

@@ -1,0 +1,245 @@
+import: 2026-10-30-cv-2023
+person: null
+compared: '2026-10-30'
+counts:
+  new: 6
+  changed: 2
+  partly-known: 0
+  known: 15
+  claims_open: 3
+open: 10
+interview_needed: true
+items:
+- key: pos1
+  kind: position
+  label: Junior Data Analyst @ Lumina Retail (04/2022 – Present)
+  match: P02
+  score: 1.0
+  changes:
+  - 'end: knowledge base 2023-06, CV present'
+  claims:
+  - key: pos1.b1
+    text: Rebuilt the weekly regional sales report in Power BI for the regional managers
+    status: known
+    coverage: 1.0
+    closest: T001
+    new_numbers: []
+  - key: pos1.b2
+    text: Automated the finance month-end SQL extracts, cutting the close from 2 days to 3 hours
+    status: partly-known
+    coverage: 0.55
+    closest: P02
+    new_numbers:
+    - '2'
+    - '3'
+    priority: high
+  status: changed
+  priority: medium
+  resolution:
+    as: covered
+    ref: P01
+    note: CV from February 2023, before the promotion; the end date and the later role are in P02/P01
+    date: '2026-10-30'
+- key: pos2
+  kind: position
+  label: Junior Business Analyst @ Vistula Logistics (07/2020 – 03/2022)
+  match: P03
+  score: 1.0
+  changes: []
+  claims:
+  - key: pos2.b1
+    text: Built an hourly picking-accuracy report for shift leaders in two warehouses
+    status: known
+    coverage: 1.0
+    closest: T003
+    new_numbers: []
+  - key: pos2.b2
+    text: Mapped the picking and packing process with the operations team and removed 3 redundant scans
+    status: partly-known
+    coverage: 0.56
+    closest: P03
+    new_numbers: []
+    priority: high
+  status: known
+  priority: medium
+- key: pos3
+  kind: position
+  label: Barista @ Rynek Coffee (09/2016 – 06/2018)
+  match: null
+  score: 0.0
+  changes: []
+  claims:
+  - key: pos3.b1
+    text: Trained 4 new baristas and ran the weekend shift
+    status: new
+    coverage: 0.4
+    closest: T003
+    new_numbers:
+    - '4'
+    priority: high
+  status: new
+  priority: high
+- key: edu1
+  kind: education
+  label: MSc, Applied Mathematics — AGH University of Krakow (2018 – 2020)
+  match: E01
+  score: 0.9
+  changes: []
+  claims: []
+  status: known
+  priority: medium
+- key: edu2
+  kind: education
+  label: BSc, Econometrics — Krakow University of Economics (2015 – 2018)
+  match: E02
+  score: 1.0
+  changes: []
+  claims: []
+  status: known
+  priority: medium
+- key: cert1
+  kind: certification
+  label: Tableau Desktop Specialist (2021)
+  match: null
+  score: 0.0
+  changes: []
+  claims: []
+  status: new
+  priority: medium
+- key: skill:sql
+  kind: skill
+  label: SQL
+  status: known
+  priority: medium
+  match: null
+  changes: []
+  claims: []
+- key: skill:excel
+  kind: skill
+  label: Excel
+  status: known
+  priority: medium
+  match: null
+  changes: []
+  claims: []
+- key: skill:power-bi
+  kind: skill
+  label: Power BI
+  status: known
+  priority: medium
+  match: null
+  changes: []
+  claims: []
+- key: skill:tableau
+  kind: skill
+  label: Tableau
+  status: new
+  priority: medium
+  match: null
+  changes: []
+  claims: []
+- key: skill:vba
+  kind: skill
+  label: VBA
+  status: new
+  priority: medium
+  match: null
+  changes: []
+  claims: []
+- key: skill:python
+  kind: skill
+  label: Python
+  status: known
+  priority: medium
+  match: null
+  changes: []
+  claims: []
+- key: lang:polish
+  kind: language
+  label: Polish native
+  priority: low
+  match: null
+  changes: []
+  claims: []
+  status: known
+- key: lang:english
+  kind: language
+  label: English C1
+  priority: low
+  match: null
+  changes: []
+  claims: []
+  status: known
+- key: lang:german
+  kind: language
+  label: German B1
+  priority: low
+  match: null
+  changes:
+  - 'level: knowledge base A2, CV B1'
+  claims: []
+  status: changed
+- key: interest:bouldering
+  kind: interest
+  label: Bouldering
+  status: new
+  priority: low
+  match: null
+  changes: []
+  claims: []
+- key: interest:film-photography
+  kind: interest
+  label: film photography
+  status: new
+  priority: low
+  match: null
+  changes: []
+  claims: []
+- key: contact:name
+  kind: contact
+  label: 'name: Aleksandra Nowak'
+  status: known
+  priority: low
+  match: null
+  changes: []
+  claims: []
+- key: contact:email
+  kind: contact
+  label: 'email: aleksandra.nowak@example.com'
+  status: known
+  priority: low
+  match: null
+  changes: []
+  claims: []
+- key: contact:phone
+  kind: contact
+  label: 'phone: +48 600 100 200'
+  status: known
+  priority: low
+  match: null
+  changes: []
+  claims: []
+- key: contact:location
+  kind: contact
+  label: 'location: Kraków, Poland'
+  status: known
+  priority: low
+  match: null
+  changes: []
+  claims: []
+- key: contact:link1
+  kind: contact
+  label: linkedin.com/in/aleksandra-nowak-example
+  priority: low
+  match: null
+  status: known
+  changes: []
+  claims: []
+- key: summary
+  kind: summary
+  label: Junior data analyst who loves turning messy spreadsheets into clear reports.
+  priority: low
+  match: null
+  status: known
+  changes: []
+  claims: []

@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Applications</title>
+<!-- Served by `uv run cv tracker` (cvtool/tracker.py). Reads and writes applications/tracker.yaml. -->
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #f5f6f8; --card: #ffffff; --text: #1c2230; --muted: #687385; --line: #e3e6eb; --hover: #f8f9fb;
+    --field: #ffffff; --accent: #2563eb; --accent-text: #ffffff;
+    --info-bg: #e8effd; --info: #1e4fb8; --good-bg: #e2f5e9; --good: #146c34; --great-bg: #cdeed8; --great: #0b5a29;
+    --bad-bg: #fdecea; --bad: #a8251a; --idle-bg: #eef0f3; --idle: #4b5563; --warn: #b45309;
+    --shadow: 0 1px 2px rgb(16 24 40 / 6%), 0 1px 3px rgb(16 24 40 / 8%);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f1216; --card: #171b21; --text: #e5e8ed; --muted: #97a1b0; --line: #2a3038; --hover: #1d222a;
+      --field: #12161b; --accent: #5b8cff; --accent-text: #0b1020;
+      --info-bg: #1a2742; --info: #a3c0ff; --good-bg: #15301f; --good: #7fdca0; --great-bg: #124026; --great: #95f2b5;
+      --bad-bg: #3a1916; --bad: #ff9f94; --idle-bg: #242a32; --idle: #b3bcc8; --warn: #f3b25c;
+      --shadow: none;
+    }
+  }
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+         font: 14px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  header { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px 32px;
+           padding: 24px 28px 12px; }
+  h1 { font-size: 22px; margin: 0 0 2px; letter-spacing: -0.01em; }
+  h2 { font-size: 17px; margin: 0; }
+  h3 { font-size: 12px; margin: 18px 0 6px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+  .who { color: var(--muted); display: flex; align-items: center; gap: 8px; min-height: 30px; }
+  .summary { display: flex; flex-wrap: wrap; gap: 8px 28px; margin: 0; }
+  .summary div { display: flex; flex-direction: column; }
+  .summary dt { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+  .summary dd { margin: 0; font-size: 20px; font-weight: 650; font-variant-numeric: tabular-nums; }
+  main { padding: 0 28px 28px; }
+  .toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 8px 0 12px; }
+  .toolbar input[type=search] { flex: 1 1 220px; max-width: 360px; }
+  .spacer { flex: 1; }
+  button { font: inherit; border: 1px solid var(--line); background: var(--card); color: var(--text);
+           border-radius: 8px; padding: 7px 14px; cursor: pointer; }
+  button:hover { background: var(--hover); }
+  button.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-text); font-weight: 600; }
+  button.primary:hover { filter: brightness(1.07); }
+  button.icon { border: none; background: none; font-size: 22px; line-height: 1; padding: 2px 8px; color: var(--muted); }
+  .seg { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: var(--card); }
+  .seg button { border: none; border-radius: 0; padding: 7px 12px; }
+  .seg button + button { border-left: 1px solid var(--line); }
+  .seg button.on { background: var(--info-bg); color: var(--info); font-weight: 600; }
+  .seg .n { color: var(--muted); font-weight: 400; margin-left: 3px; }
+  input, select, textarea { font: inherit; color: var(--text); background: var(--field); border: 1px solid var(--line);
+                            border-radius: 8px; padding: 7px 10px; min-width: 0; }
+  textarea { resize: vertical; }
+  option { color: var(--text); background: var(--card); }
+  input:focus-visible, select:focus-visible, textarea:focus-visible, button:focus-visible, tr:focus-visible {
+    outline: 2px solid var(--accent); outline-offset: -1px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow); overflow: hidden; }
+  .table-wrap { overflow-x: auto; }
+  table { width: 100%; min-width: 900px; border-collapse: collapse; }
+  th, td { padding: 10px 12px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
+  th { font-size: 12px; font-weight: 600; color: var(--muted); background: var(--card); position: sticky; top: 0;
+       cursor: pointer; user-select: none; white-space: nowrap; }
+  th[aria-sort=ascending]::after { content: " ↑"; }
+  th[aria-sort=descending]::after { content: " ↓"; }
+  tbody tr { cursor: pointer; }
+  tbody tr:hover { background: var(--hover); }
+  tbody tr:last-child td { border-bottom: none; }
+  tr.closed td { color: var(--muted); }
+  .company { font-weight: 600; }
+  .sub { font-size: 12px; color: var(--muted); }
+  .sub.due { color: var(--warn); font-weight: 600; }
+  .muted { color: var(--muted); }
+  .nowrap { white-space: nowrap; }
+  td.salary { max-width: 210px; }
+  td.next { max-width: 240px; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  a.ext { display: inline-block; font-size: 12px; margin-top: 2px; }
+  a.pill { display: inline-block; font-size: 11px; font-weight: 600; margin-left: 6px; padding: 1px 6px;
+           border-radius: 5px; background: var(--info-bg); color: var(--info); }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; white-space: nowrap; }
+  select.status { padding: 4px 6px; border-radius: 6px; font-size: 13px; font-weight: 600; border: 1px solid transparent; }
+  .tone-info { background: var(--info-bg); color: var(--info); }
+  .tone-good { background: var(--good-bg); color: var(--good); }
+  .tone-great { background: var(--great-bg); color: var(--great); }
+  .tone-bad { background: var(--bad-bg); color: var(--bad); }
+  .tone-idle { background: var(--idle-bg); color: var(--idle); }
+  .empty { padding: 36px 20px; margin: 0; text-align: center; color: var(--muted); }
+  .foot { font-size: 12px; color: var(--muted); margin: 12px 2px 0; }
+  code { font-family: ui-monospace, "Cascadia Mono", Consolas, monospace; font-size: 12px; overflow-wrap: anywhere; }
+  dialog { border: none; border-radius: 12px; padding: 0; width: min(780px, calc(100vw - 24px)); max-height: calc(100vh - 24px);
+           background: var(--card); color: var(--text); box-shadow: 0 24px 60px rgb(0 0 0 / 28%); }
+  dialog::backdrop { background: rgb(12 15 20 / 50%); }
+  dialog form { display: flex; flex-direction: column; max-height: calc(100vh - 24px); }
+  .dlg-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; padding: 20px 24px 6px; }
+  .dlg-body { padding: 10px 24px 8px; overflow: auto; }
+  .dlg-foot { display: flex; align-items: center; gap: 8px; padding: 14px 24px 18px; border-top: 1px solid var(--line); }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 16px; }
+  .grid + .grid { margin-top: 12px; }
+  .grid .wide { grid-column: 1 / -1; }
+  #status-row { padding-bottom: 14px; border-bottom: 1px solid var(--line); margin-bottom: 14px; }
+  label { display: flex; flex-direction: column; gap: 4px; font-size: 12px; font-weight: 600; color: var(--muted); }
+  label .opt { font-weight: 400; }
+  .list { list-style: none; margin: 0; padding: 0; }
+  .list li { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; padding: 6px 0; border-bottom: 1px solid var(--line); }
+  .list li:last-child { border-bottom: none; }
+  .list .date { min-width: 76px; color: var(--muted); font-variant-numeric: tabular-nums; }
+  #toast { position: fixed; left: 50%; bottom: 24px; transform: translate(-50%, 16px); opacity: 0; transition: .18s;
+           background: var(--text); color: var(--bg); padding: 10px 16px; border-radius: 8px; pointer-events: none;
+           max-width: min(680px, calc(100vw - 32px)); box-shadow: 0 8px 24px rgb(0 0 0 / 20%); z-index: 10; }
+  #toast.show { opacity: 1; transform: translate(-50%, 0); }
+  #toast.error { background: var(--bad); color: #fff; }
+  @media (max-width: 640px) {
+    header, main { padding-left: 14px; padding-right: 14px; }
+    .grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>Applications</h1>
+    <div class="who"><span id="who">Loading…</span><select id="person" aria-label="Whose applications" hidden></select></div>
+  </div>
+  <dl id="summary" class="summary"></dl>
+</header>
+<main>
+  <div class="toolbar">
+    <div class="seg" role="group" aria-label="Show">
+      <button type="button" data-filter="open">Open<span class="n"></span></button>
+      <button type="button" data-filter="closed">Closed<span class="n"></span></button>
+      <button type="button" data-filter="all">All<span class="n"></span></button>
+    </div>
+    <input id="search" type="search" placeholder="Search company, position, notes…" aria-label="Search">
+    <span class="spacer"></span>
+    <button type="button" id="add" class="primary">Add listing</button>
+  </div>
+  <div class="card">
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th data-sort="company">Company</th>
+            <th data-sort="role">Position</th>
+            <th data-sort="salary">Salary</th>
+            <th data-sort="created">Saved</th>
+            <th data-sort="sent">Sent</th>
+            <th data-sort="status">Status</th>
+            <th data-sort="reply">Reply</th>
+            <th data-sort="next">Next step</th>
+          </tr>
+        </thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+    <p id="empty" class="empty" hidden></p>
+  </div>
+  <p class="foot">Saved in <code id="file"></code>. Claude and <code>uv run cv app …</code> use the same file.
+    This page refreshes every 15 seconds and works only on this computer.</p>
+</main>
+
+<dialog id="dialog" aria-labelledby="dlg-title">
+  <form id="form" method="dialog" novalidate>
+    <div class="dlg-head">
+      <div><h2 id="dlg-title"></h2><div id="dlg-sub" class="sub"></div></div>
+      <button type="button" class="icon" id="dlg-x" aria-label="Close">×</button>
+    </div>
+    <div class="dlg-body">
+      <div id="status-row" class="grid">
+        <label>Status<select name="status"></select></label>
+        <label>What happened <span class="opt">(optional, kept in the history)</span>
+          <input name="note" type="text" placeholder="e.g. call with the recruiter, interview Thu 10:00"></label>
+      </div>
+      <div id="fields" class="grid"></div>
+      <section id="sent-box"><h3>CVs sent</h3><ul id="sent-list" class="list"></ul></section>
+      <section id="history-box"><h3>History</h3><ul id="history-list" class="list"></ul></section>
+    </div>
+    <div class="dlg-foot">
+      <code id="dlg-folder" class="sub"></code>
+      <span class="spacer"></span>
+      <button type="button" id="dlg-cancel">Cancel</button>
+      <button type="submit" class="primary" id="dlg-save">Save</button>
+    </div>
+  </form>
+</dialog>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script>
+"use strict";
+const TOKEN = "__TOKEN__";
+const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const TONES = {draft: "idle", ready: "info", sent: "info", screening: "good", interview: "good", offer: "great",
+               accepted: "great", rejected: "bad", "no-response": "idle", withdrawn: "idle"};
+const FIELDS = [
+  {key: "company", label: "Company", required: true, onNew: true},
+  {key: "role", label: "Position", required: true, onNew: true},
+  {key: "link", label: "Link to the listing", type: "url", placeholder: "https://…", onNew: true, wide: true},
+  {key: "salary", label: "Salary in the ad", placeholder: "as written in the ad", onNew: true},
+  {key: "expected_salary", label: "Salary you asked for", placeholder: "if a form asked"},
+  {key: "location", label: "Location", onNew: true},
+  {key: "work_mode", label: "Work mode", type: "select", onNew: true},
+  {key: "source", label: "Found on", placeholder: "LinkedIn, a job board, a referral…", onNew: true},
+  {key: "deadline", label: "Deadline", type: "date", onNew: true},
+  {key: "sent_via", label: "Sent via", placeholder: "company site, Easy Apply, email…"},
+  {key: "contact", label: "Contact", placeholder: "recruiter or hiring manager"},
+  {key: "next_step", label: "Next step", placeholder: "e.g. phone screen Thu 10:00"},
+  {key: "follow_up", label: "Follow up on", type: "date"},
+  {key: "notes", label: "Notes", type: "textarea", onNew: true, wide: true},
+];
+const SORTS = {
+  company: r => (r.company || "").toLowerCase(),
+  role: r => (r.role || "").toLowerCase(),
+  salary: r => (r.salary || "").toLowerCase(),
+  created: r => r.created || "",
+  sent: r => r.sent || "",
+  status: r => data.statuses.findIndex(s => s.id === r.status),
+  reply: r => ({"replied": 0, "waiting": 1, "no reply": 2, "not sent": 3})[r.reply.state],
+  next: r => r.follow_up || "9999" + (r.next_step || ""),
+};
+
+let person = new URLSearchParams(location.search).get("person") || "";
+let data = null;
+let lastState = "";  // the last state as JSON, so a refresh that changes nothing doesn't redraw the table
+let filter = "open";
+let sortKey = "created", sortDir = -1;
+let editing = null;  // id of the application in the dialog, "" while adding one
+let toastTimer = 0;
+
+const $ = sel => document.querySelector(sel);
+const dialog = $("#dialog"), form = $("#form");
+
+function h(tag, props, ...children) {
+  const node = document.createElement(tag);
+  for (const [key, value] of Object.entries(props || {})) {
+    if (value === undefined || value === null || value === false) continue;
+    if (key === "class") node.className = value;
+    else if (key.startsWith("on")) node.addEventListener(key.slice(2), value);
+    else node.setAttribute(key, value === true ? "" : value);
+  }
+  for (const child of children.flat()) {
+    if (child !== null && child !== undefined && child !== false && child !== "") node.append(child);
+  }
+  return node;
+}
+
+async function api(path, body) {
+  const url = path + (path.includes("?") ? "&" : "?") + "person=" + encodeURIComponent(person);
+  const init = body === undefined ? {} : {method: "POST", body: JSON.stringify(body),
+    headers: {"Content-Type": "application/json", "X-Tracker-Token": TOKEN}};
+  const res = await fetch(url, init);
+  let out;
+  try { out = await res.json(); } catch (e) { out = {error: res.statusText}; }
+  if (!res.ok) throw new Error(out.error || res.statusText);
+  return out;
+}
+
+function use(next) {
+  const text = JSON.stringify(next);
+  if (text === lastState) return false;
+  lastState = text;
+  data = next;
+  person = next.person;
+  return true;
+}
+
+async function refresh() {
+  try {
+    if (use(await api("/api/state"))) render();
+  } catch (e) {
+    toast(e.message, true);
+  }
+}
+
+function fmtDate(iso) {
+  const [y, m, d] = String(iso || "").split("-").map(Number);
+  if (!y || !m || !d) return iso || "";
+  return `${d} ${MONTHS[m - 1]}` + (data && Number(data.today.slice(0, 4)) === y ? "" : ` ${y}`);
+}
+const tone = status => TONES[status] || "idle";
+const labelOf = status => (data.statuses.find(s => s.id === status) || {label: status}).label;
+const byId = id => data.applications.find(r => r.id === id);
+const appPath = id => "/api/app/" + encodeURIComponent(id);
+const fileUrl = (id, path) => "/file?app=" + encodeURIComponent(id) + "&path=" + encodeURIComponent(path) +
+  "&person=" + encodeURIComponent(person);
+const webLink = url => /^https?:\/\//i.test(url || "") ? url : null;
+const ever = (r, statuses) => statuses.includes(r.status) || (r.history || []).some(e => statuses.includes(e.status));
+
+function render() {
+  document.title = `Applications · ${data.name}`;
+  $("#who").textContent = data.people.length > 1 ? "for" : `for ${data.name}`;
+  const picker = $("#person");
+  picker.hidden = data.people.length < 2;
+  picker.replaceChildren(...data.people.map(p => h("option", {value: p.id, selected: p.id === data.person}, p.name)));
+  $("#file").textContent = data.file;
+
+  const all = data.applications;
+  const sent = all.filter(r => r.reply.state !== "not sent").length;
+  const replied = all.filter(r => r.reply.state === "replied").length;
+  const facts = [["Tracked", all.length], ["Sent", sent],
+                 ["Replied", sent ? `${replied} · ${Math.round(100 * replied / sent)}%` : replied],
+                 ["Interviews", all.filter(r => ever(r, ["interview", "offer", "accepted"])).length],
+                 ["Offers", all.filter(r => ever(r, ["offer", "accepted"])).length]];
+  $("#summary").replaceChildren(...facts.map(([k, v]) => h("div", null, h("dt", null, k), h("dd", null, String(v)))));
+
+  const counts = {open: all.filter(r => r.open).length, closed: all.filter(r => !r.open).length, all: all.length};
+  for (const button of document.querySelectorAll("[data-filter]")) {
+    button.querySelector(".n").textContent = " " + counts[button.dataset.filter];
+    button.classList.toggle("on", button.dataset.filter === filter);
+    button.setAttribute("aria-pressed", String(button.dataset.filter === filter));
+  }
+  for (const th of document.querySelectorAll("th[data-sort]")) {
+    if (th.dataset.sort === sortKey) th.setAttribute("aria-sort", sortDir > 0 ? "ascending" : "descending");
+    else th.removeAttribute("aria-sort");
+  }
+
+  const q = $("#search").value.trim().toLowerCase();
+  const shown = all.filter(r => (filter === "all" || (filter === "open") === r.open) &&
+    (!q || [r.company, r.role, r.salary, r.location, r.source, r.contact, r.next_step, r.notes]
+            .join(" ").toLowerCase().includes(q)));
+  shown.sort((a, b) => {
+    const x = SORTS[sortKey](a), y = SORTS[sortKey](b);
+    return (x < y ? -1 : x > y ? 1 : 0) * sortDir || (a.id < b.id ? 1 : -1);
+  });
+  $("#rows").replaceChildren(...shown.map(rowNode));
+  const empty = $("#empty");
+  empty.hidden = shown.length > 0;
+  empty.textContent = all.length ? "Nothing here matches." :
+    "No applications yet. Add a listing here, or give Claude a job ad (/apply) for a tailored CV.";
+}
+
+function rowNode(r) {
+  const where = [r.location, r.work_mode].filter(Boolean).join(" · ");
+  const lastSent = (r.sent_cvs || []).filter(s => s.file).slice(-1)[0];
+  const stop = e => e.stopPropagation();
+  return h("tr", {class: r.open ? "" : "closed", tabindex: "0", onclick: () => openDialog(r.id),
+                  onkeydown: e => { if (e.key === "Enter" && e.target.tagName === "TR") openDialog(r.id); }},
+    h("td", null, h("div", {class: "company"}, r.company || ""), where && h("div", {class: "sub"}, where)),
+    h("td", null, h("div", null, r.role || ""),
+      webLink(r.link) && h("a", {class: "ext", href: webLink(r.link), target: "_blank", rel: "noopener noreferrer",
+                                 title: r.link, onclick: stop}, "listing ↗")),
+    h("td", {class: "salary" + (r.salary ? "" : " muted")}, r.salary || "—"),
+    h("td", {class: "nowrap"}, fmtDate(r.created)),
+    h("td", {class: "nowrap"}, r.sent ? fmtDate(r.sent) : h("span", {class: "muted"}, "—"),
+      lastSent && h("a", {class: "pill", href: fileUrl(r.id, lastSent.file), target: "_blank",
+                          title: "The CV that was sent: " + lastSent.file, onclick: stop}, "CV")),
+    h("td", {onclick: stop}, statusPicker(r)),
+    h("td", null, replyBadge(r)),
+    h("td", {class: "next"}, r.next_step || "",
+      r.follow_up && h("div", {class: "sub" + (r.follow_up_due ? " due" : "")},
+                       (r.follow_up_due ? "follow up now · " : "follow up ") + fmtDate(r.follow_up))));
+}
+
+function statusPicker(r) {
+  const picker = h("select", {class: "status tone-" + tone(r.status), "aria-label": `Status of ${r.company}`},
+    ...data.statuses.map(s => h("option", {value: s.id, selected: s.id === r.status}, s.label)));
+  picker.addEventListener("change", async () => {
+    picker.disabled = true;
+    try {
+      use(await api(appPath(r.id), {status: picker.value}));
+      const kept = (byId(r.id).sent_cvs || []).slice(-1)[0];
+      toast(picker.value === "sent" && kept && kept.file ? `Marked sent. The CV that went out is kept: ${kept.file}`
+                                                         : `${r.company}: ${labelOf(picker.value)}`);
+    } catch (e) {
+      toast(e.message, true);
+    }
+    render();
+  });
+  return picker;
+}
+
+function replyBadge(r) {
+  const {state, days, date} = r.reply;
+  if (state === "not sent") return h("span", {class: "muted"}, "—");
+  if (state === "waiting") return h("span", {class: "badge tone-info"}, days === null ? "waiting" : `waiting ${days} d`);
+  if (state === "replied") return h("span", {class: "badge tone-good", title: days === null ? "" : `${days} days after sending`},
+                                    "replied" + (date ? " " + fmtDate(date) : ""));
+  return h("span", {class: "badge tone-idle"}, "no reply");
+}
+
+function openDialog(id) {
+  const r = id ? byId(id) : null;
+  editing = r ? r.id : "";
+  $("#fields").replaceChildren(...FIELDS.filter(f => r || f.onNew).map(f => {
+    let input;
+    if (f.type === "select") {
+      input = h("select", {name: f.key}, h("option", {value: ""}, "—"), ...data.work_modes.map(m => h("option", {value: m}, m)));
+    } else if (f.type === "textarea") {
+      input = h("textarea", {name: f.key, rows: "3", placeholder: f.placeholder});
+    } else {
+      input = h("input", {name: f.key, type: f.type || "text", placeholder: f.placeholder, required: f.required});
+    }
+    return h("label", {class: f.wide ? "wide" : ""}, f.label + (f.required ? " *" : ""), input);
+  }));
+  $("#dlg-title").textContent = r ? `${r.company} — ${r.role}` : "Add a listing";
+  $("#dlg-sub").textContent = r ? [r.label, r.created && "saved " + fmtDate(r.created), r.sent && "sent " + fmtDate(r.sent)]
+                                    .filter(Boolean).join(" · ")
+                                : "It gets its own application folder, ready for a tailored CV (/apply).";
+  $("#dlg-folder").textContent = r ? r.id : "";
+  $("#dlg-save").textContent = r ? "Save" : "Add";
+  for (const box of ["#status-row", "#sent-box", "#history-box"]) $(box).hidden = !r;
+  form.elements.note.value = "";
+  if (r) {
+    form.elements.status.replaceChildren(...data.statuses.map(s => h("option", {value: s.id, selected: s.id === r.status}, s.label)));
+    for (const f of FIELDS) form.elements[f.key].value = r[f.key] || "";
+    const sent = r.sent_cvs || [];
+    $("#sent-list").replaceChildren(...(sent.length ? sent.map(s => h("li", null,
+        h("span", {class: "date"}, fmtDate(s.date)),
+        s.file ? h("a", {href: fileUrl(r.id, s.file), target: "_blank"}, s.file.split("/").pop())
+               : h("span", {class: "muted"}, "no file kept"),
+        h("span", {class: "sub"}, [s.template, s.via && "via " + s.via].filter(Boolean).join(" · "))))
+      : [h("li", {class: "muted"}, r.cv_pdf ? "Not sent yet. When the status becomes “sent, waiting”, a copy of the current CV is kept: "
+                                            : "Not sent yet.",
+           r.cv_pdf && h("a", {href: fileUrl(r.id, r.cv_pdf), target: "_blank"}, r.cv_pdf))]));
+    $("#history-list").replaceChildren(...(r.history || []).slice().reverse().map(e => h("li", null,
+      h("span", {class: "date"}, fmtDate(e.date)),
+      h("span", {class: "badge tone-" + tone(e.status)}, labelOf(e.status)),
+      e.note ? h("span", null, e.note) : null)));
+  }
+  dialog.showModal();
+  if (!r) form.elements.company.focus();
+}
+
+async function save(event) {
+  event.preventDefault();
+  const values = {};
+  for (const f of FIELDS) if (form.elements[f.key]) values[f.key] = form.elements[f.key].value.trim();
+  try {
+    if (!editing) {
+      if (!values.company || !values.role) throw new Error("A listing needs the company and the position.");
+      const added = await api("/api/app", Object.fromEntries(Object.entries(values).filter(([, v]) => v)));
+      use(added);
+      toast(`Added ${values.company}. Its folder: ${added.added}`);
+    } else {
+      const r = byId(editing);
+      const changes = {};
+      for (const [key, value] of Object.entries(values)) if ((r[key] || "") !== value) changes[key] = value;
+      const status = form.elements.status.value, note = form.elements.note.value.trim();
+      if (status !== r.status || note) Object.assign(changes, {status}, note ? {note} : {});
+      if (Object.keys(changes).length) {
+        use(await api(appPath(editing), changes));
+        toast("Saved");
+      }
+    }
+    dialog.close();
+    render();
+  } catch (e) {
+    toast(e.message, true);
+  }
+}
+
+function toast(message, isError) {
+  const box = $("#toast");
+  box.textContent = message;
+  box.className = "show" + (isError ? " error" : "");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => { box.className = isError ? "error" : ""; }, isError ? 7000 : 3500);
+}
+
+form.addEventListener("submit", save);
+$("#dlg-x").addEventListener("click", () => dialog.close());
+$("#dlg-cancel").addEventListener("click", () => dialog.close());
+dialog.addEventListener("click", e => { if (e.target === dialog) dialog.close(); });
+$("#add").addEventListener("click", () => openDialog(""));
+$("#search").addEventListener("input", () => data && render());
+$("#person").addEventListener("change", e => {
+  person = e.target.value;
+  history.replaceState(null, "", "?person=" + encodeURIComponent(person));
+  refresh();
+});
+for (const button of document.querySelectorAll("[data-filter]")) {
+  button.addEventListener("click", () => { filter = button.dataset.filter; render(); });
+}
+for (const th of document.querySelectorAll("th[data-sort]")) {
+  th.addEventListener("click", () => {
+    sortDir = th.dataset.sort === sortKey ? -sortDir : (["created", "sent"].includes(th.dataset.sort) ? -1 : 1);
+    sortKey = th.dataset.sort;
+    render();
+  });
+}
+document.addEventListener("keydown", e => {
+  if (e.key === "/" && !dialog.open && document.activeElement.tagName !== "INPUT") { e.preventDefault(); $("#search").focus(); }
+});
+document.addEventListener("visibilitychange", () => { if (!document.hidden && !dialog.open) refresh(); });
+setInterval(() => { if (!document.hidden && !dialog.open && !document.activeElement.matches("select")) refresh(); }, 15000);
+refresh();
+</script>
+</body>
+</html>

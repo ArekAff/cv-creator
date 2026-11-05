@@ -1,0 +1,75 @@
+round: 1
+track: technical
+verdict: pass
+total: 85
+scores:
+  relevance: {score: 17, max: 20}
+  keywords: {score: 17, max: 20}
+  evidence: {score: 17, max: 20}
+  summary: {score: 8, max: 10}
+  skills: {score: 9, max: 10}
+  format: {score: 9, max: 10}
+  language: {score: 8, max: 10}
+blockers: []
+findings:
+  - id: F1
+    severity: should
+    rule: N-1
+    where: summary
+    problem: "The ad sums up the job as turning operational data into 'decisions our hub managers trust' (the borrowed N-1 target), but the CV never mentions decisions, and summary sentence 2 reads as a keyword chain ('Combines ... on ... with ...') rather than in her voice."
+    fix: "Rebuild the summary on her own draft (insights.summary_drafts: 'builds forecasts and reports around the decisions operations teams make every week'; T001 and T003 map 'reports' to 'dashboards') and keep the documented proof, e.g. 'Data analyst with 6 years in retail and logistics who builds forecasts and dashboards around the decisions operations teams make every week, now aiming for a Senior Data Analyst role. Works in Python, Power BI and tested dbt models, with stakeholder management that starts on the warehouse floor or in the meeting room. At Lumina Retail, a garden-range forecast cut error from 31% to 19% MAPE in back-tests and won the 2024 Analytics Impact Award.' This keeps 'Senior Data Analyst' and 'stakeholder management', which appear nowhere else on the CV. It must stay at four lines because the page is full."
+    needs_input: false
+  - id: F2
+    severity: should
+    rule: T-4
+    where: experience[0].bullets[2]
+    problem: "The current role's third bullet is a duty with no result, its second half is a keyword fragment ('SQL window functions and data modelling in tested dbt models'), and it is the third 'tested dbt models' on the page."
+    fix: "Make it one working sentence that keeps the R02 phrases and still fits on one line, e.g. 'Own the weekly commercial reporting suite and its data modelling in dbt, writing SQL with window functions' (P01 responsibility; weekly use of window functions in the dbt models is confirmed in the Vantaro gap interview). If a line frees up elsewhere, P01's 'data-quality checks on the order pipeline' answers the ad's 'reliable and tested' reporting."
+    needs_input: false
+  - id: F3
+    severity: should
+    rule: T-4
+    where: experience[0].bullets[2]
+    problem: "The bullet that shows current ownership has no result: the only usage figure for this reporting (all 6 regional managers every week) dates from January 2023 and is already used in experience[1]."
+    fix: "Once she has given them, add who uses the suite today and how often, in her own figures; T001 and P01 hold nothing current."
+    needs_input: true
+    question: "It's a Monday morning at Lumina this autumn and the weekly commercial reports have just refreshed. Who opens them, and about how many people is that?"
+  - id: F4
+    severity: should
+    rule: N-5
+    where: experience[0]
+    problem: "The ad's fifth duty is mentoring two junior analysts, but the CV can only show shift-leader training (2021) and volunteer workshops, because the knowledge base has nothing on helping analysts at work."
+    fix: "If she has helped a newer analyst at Lumina, add one P01 bullet with the scope (how many people, what they could do afterwards) and win the line back elsewhere, since the page is full. If not, leave it: experience[2].bullets[1] and the volunteering entry cover R10 honestly."
+    needs_input: true
+    question: "Has there been a time at Lumina when someone newer in the analytics team was learning something from you? If so, take me to that moment: what's happening?"
+  - id: F5
+    severity: could
+    rule: C-7
+    where: experience[1].bullets[0]
+    problem: "The ad asks for 'self-service dashboards' for managers and shift leaders, and T001 already maps this report to 'self-service BI', but the word is not on the CV."
+    fix: "Write '...replaced a 40-tab Excel pack with a one-page self-service Power BI dashboard of the five KPIs managers used...' (T001 keywords; two managers tried the prototype on their phones before the meeting). If the bullet then wraps to a third line, drop 'one-page'."
+    needs_input: false
+  - id: F6
+    severity: could
+    rule: C-2
+    where: skills[0]
+    problem: "The ad writes 'Google Cloud Platform / BigQuery'; the CV's 'Google Cloud / BigQuery' misses an exact-phrase search."
+    fix: "Write 'Google Cloud Platform / BigQuery (certification in progress)'. skills.yaml records GCP and BigQuery as aliases of Google Cloud, and the row stays on one line."
+    needs_input: false
+  - id: F7
+    severity: could
+    rule: N-5
+    where: volunteering[0].bullets[0]
+    problem: "The mentoring bullet has no scale (people per workshop, or workshops run since October 2021), so it reads as a duty rather than proof."
+    fix: "Add her figure for participants or for workshops run, keeping the bullet on one line."
+    needs_input: true
+    question: "Picture the most recent Data Girls Kraków workshop you ran. How many people are in the room?"
+  - id: F8
+    severity: could
+    rule: C-7
+    where: experience[0].bullets[0]
+    problem: "The ad's first duty is to 'build and own' forecasts; the bullet shows she built one in 2024, but whether it ran again and who owns it now is still an open question in T002."
+    fix: "If she has run the model again since 2024, say so in her words in this bullet, provided it still fits the page. Don't imply ownership until she confirms it."
+    needs_input: true
+    question: "It's spring 2025 and the buyers are planning the garden range again. What's happening with your forecast model at that point?"
+summary: "First draft: every claim traces to the knowledge base, the build is clean on one full page, and six of eight bullets prove the ad's duties with real figures, so it passes at the threshold. What holds it back: the ad's outcome ('decisions our hub managers trust') is never echoed, the current role's third bullet is a keyword fragment without a result, and mentoring analysts at work is unproven."

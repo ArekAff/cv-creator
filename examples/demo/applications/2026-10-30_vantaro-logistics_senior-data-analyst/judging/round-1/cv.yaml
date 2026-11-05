@@ -1,0 +1,108 @@
+# DEMO DATA — tailored CV: Senior Data Analyst, Network Planning, Vantaro Logistics.
+# Track: technical (T-rules) + borrowed N-1, N-5. Every bullet carries `source:` ids from the knowledge base.
+meta:
+  template: jakes
+  language: en
+  paper: a4
+  font_size: 11pt
+  date_format: short
+  max_pages: 1
+  # T-6, senior order (6 years in data analytics): experience before skills; volunteering right after
+  # experience because it proves the mentoring duty; certifications back two must-have tools.
+  sections_order: [summary, experience, volunteering, skills, certifications, education, languages]
+  hide: [languages]                       # notes.md: spoken languages live in the skills block (one page)
+  headings: {skills: Technical Skills}    # notes.md: the person's requested heading
+  target: {company: Vantaro Logistics, role: Senior Data Analyst}
+
+header:
+  name: Aleksandra Nowak
+  headline: "Data Analyst · Forecasting, Power BI and dbt · Retail and Logistics"
+  location: Kraków, Poland
+  email: aleksandra.nowak@example.com
+  phone: "+48 600 100 200"
+  links:
+    - {kind: linkedin, url: "https://www.linkedin.com/in/aleksandra-nowak-example"}
+
+summary: >-
+  Data analyst with 6 years in retail and logistics, now aiming for a Senior Data Analyst role close
+  to operations. Combines Python demand forecasting and Power BI dashboards on tested dbt models with
+  stakeholder management that starts on the warehouse floor or in the meeting room. At Lumina Retail,
+  a garden-range model cut forecast error from 31% to 19% MAPE in back-tests and won the company's
+  2024 Analytics Impact Award.
+
+experience:
+  - title: Data Analyst
+    organization: Lumina Retail
+    location: Kraków, Poland
+    start: 2023-07
+    end: present
+    description: "Home and garden e-commerce retailer, about 400 people, 6 sales regions"
+    bullets:
+      - text: "Built a gradient-boosting demand forecast for the summer garden range in Python (pandas, scikit-learn) with weather and promotion features; back-tested on two seasons, it cut forecast error from 31% to 19% MAPE"
+        source: [T002]
+      - text: "Explained the forecast to the buying team as ranges, not single numbers, with a one-page explainer; end-of-season markdown stock was about 12% lower than in 2023"
+        source: [T002]
+      - text: "Own the weekly commercial reporting suite: SQL window functions and data modelling in tested dbt models"
+        source: [P01, T001]
+  - title: Junior Data Analyst
+    organization: Lumina Retail
+    location: Kraków, Poland
+    start: 2022-04
+    end: 2023-06
+    bullets:
+      - text: "Sat in on three regional Monday meetings, then replaced a 40-tab Excel pack with a one-page Power BI dashboard of the five KPIs managers used; preparation fell from about 6 hours to 30 minutes a week"
+        source: [T001]
+      - text: "Moved the manual SQL extracts into tested dbt models on PostgreSQL, eliminating copy-paste errors, and switched off the old pack once all 6 regional managers used the new report every week"
+        source: [T001]
+  - title: Junior Business Analyst
+    organization: Vistula Logistics
+    location: Kraków, Poland
+    start: 2020-07
+    end: 2022-03
+    description: "Third-party logistics operator, 2 warehouses, about 250 warehouse staff"
+    bullets:
+      - text: "Spent two night shifts on the warehouse floor with the shift leaders, then built an hourly picking-accuracy dashboard in Power BI from scanner data, showing errors during the shift instead of a week later"
+        source: [T003]
+      - text: "Trained all 8 shift leaders in both warehouses to use it at handover; picking errors fell 18% in three months"
+        source: [T003]
+
+volunteering:
+  - title: Volunteer Data Mentor
+    organization: Data Girls Kraków
+    location: Kraków, Poland
+    start: 2021-10
+    end: present
+    bullets:
+      - text: "Run monthly beginner SQL and Power BI workshops teaching women to analyse data"
+        source: [P04]
+
+skills:
+  - {category: Data, items: ["SQL (window functions)", dbt, PostgreSQL, "Google Cloud / BigQuery (certification in progress)"]}
+  - {category: Analysis and BI, items: ["Python (pandas, scikit-learn)", "Power BI (DAX, Power Query)", demand forecasting]}
+  - {category: Spoken languages, items: [English (C1), Polish (native)]}
+
+certifications:
+  - {name: "Microsoft Certified: Power BI Data Analyst Associate", issuer: Microsoft, date: 2023-05, status: completed}
+  - {name: dbt Fundamentals, issuer: dbt Labs, date: 2024-02, status: completed}
+  - {name: Google Cloud Professional Data Engineer, issuer: Google Cloud, date: 2026-12, status: in-progress}
+
+education:
+  - degree: MSc
+    field: Applied Mathematics (Data Science track)
+    institution: AGH University of Krakow
+    location: Kraków, Poland
+    start: 2018-10
+    end: 2020-07
+    thesis: "Short-term demand forecasting for perishable goods"
+  - degree: BSc
+    field: Econometrics
+    institution: Krakow University of Economics
+    location: Kraków, Poland
+    start: 2015-10
+    end: 2018-06
+
+languages:
+  - {language: English, level: C1}
+  - {language: Polish, level: native}
+
+gdpr_clause: true

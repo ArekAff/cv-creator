@@ -1,0 +1,24 @@
+# DEMO DATA — the job ad broken down (guide: "Break down the job description").
+job:
+  title: Senior Data Analyst
+  team: Network Planning
+  company: Vantaro Logistics
+  location: Kraków, Poland (hybrid)
+  seniority: senior
+  language: en
+  source: https://careers.example.com/vantaro/senior-data-analyst
+  ats_likely: true
+  title_variants: [Senior Data Analyst, Data Analyst, Network Planning Analyst]
+requirements:
+  - {id: R01, type: must, category: experience, text: "4+ years of experience in data analytics, ideally logistics, supply chain or retail", keywords: [data analytics, logistics, supply chain, retail], signal: "first in the list"}
+  - {id: R02, type: must, category: skill, text: "Advanced SQL incl. window functions and data modelling", keywords: [SQL, data modelling], signal: "listed early; data modelling repeated in duties"}
+  - {id: R03, type: must, category: skill, text: "Python for analysis and forecasting (pandas, scikit-learn or statsmodels)", keywords: [Python, forecasting, pandas, scikit-learn], signal: "forecasting is the first duty"}
+  - {id: R04, type: must, category: tool, text: "Power BI or Tableau at an advanced level", keywords: [Power BI, dashboards], signal: "duty + requirement"}
+  - {id: R05, type: must, category: tool, text: "dbt or a similar transformation tool", keywords: [dbt], signal: "duty + requirement"}
+  - {id: R06, type: must, category: soft, text: "Stakeholder management with non-technical, operational teams", keywords: [stakeholder management, operations], signal: "repeated three times (duties, requirement, intro)"}
+  - {id: R07, type: must, category: language, text: "Very good English; Polish a plus", keywords: [English, Polish]}
+  - {id: R08, type: nice, category: tool, text: "Google Cloud Platform / BigQuery", keywords: [Google Cloud, BigQuery]}
+  - {id: R09, type: nice, category: tool, text: "Airflow or another orchestration tool", keywords: [Airflow, orchestration]}
+  - {id: R10, type: nice, category: soft, text: "Experience mentoring or training others", keywords: [mentoring, training], signal: "also a duty: mentor two juniors"}
+keywords: [Senior Data Analyst, forecasting, Power BI, dbt, SQL, Python, data modelling, dashboards, stakeholder management, operations, logistics, BigQuery, mentoring]
+company_language: ["turns operational data into decisions", "hub managers trust", "ownership, clarity and calm under pressure"]

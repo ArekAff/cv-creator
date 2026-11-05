@@ -1,0 +1,54 @@
+%% settings.sty -- style settings for the "Customised CurVe CV" (cv-templates/A_Customised_CurVe_CV.tex).
+%% The template's own settings.sty was not included; this is a compatible reimplementation for CV Creator.
+%% Provides: \ifxetexorluatex, \makefield, \prefixmarker, \mynames (no-op without biblatex),
+%% the colours SwishLineColour and MarkerColour, rubric styling and the comment environments.
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{settings}[2026/10/30 v1.0 settings for the customised CurVe CV (CV Creator reimplementation)]
+
+\RequirePackage{iftex}
+\newif\ifxetexorluatex
+\ifPDFTeX\xetexorluatexfalse\else\xetexorluatextrue\fi
+
+\RequirePackage{babel}            % language comes from the class options (english, polish, ...)
+\RequirePackage[dvipsnames]{xcolor}
+\RequirePackage{graphicx}
+\RequirePackage[left=2cm,right=2cm,top=1.5cm,bottom=1.5cm]{geometry}
+\RequirePackage{fontawesome5}
+\RequirePackage{comment}
+% curve.cls has no description list; enumitem expects one
+\@ifundefined{description}{%
+  \newenvironment{description}
+    {\list{}{\labelwidth\z@ \itemindent-\leftmargin \let\makelabel\descriptionlabel}}
+    {\endlist}
+  \newcommand*\descriptionlabel[1]{\hspace\labelsep\normalfont\bfseries #1}}{}
+\RequirePackage{enumitem}
+\RequirePackage[hidelinks]{hyperref}
+\RequirePackage{etoolbox}
+
+\definecolor{SwishLineColour}{HTML}{1F5F8B}
+\definecolor{MarkerColour}{HTML}{1F5F8B}
+
+% Header fields: icon + text, placed inline; a blank line starts a new row.
+\newcommand{\makefield}[2]{\mbox{\makebox[1.2em][c]{\color{MarkerColour}#1}\,#2}\hspace{1.4em}}
+
+% Rubric headings: coloured sans title followed by a thin rule to the right margin.
+\rubricalignment{l}
+\rubricfont{\large\bfseries\sffamily\color{SwishLineColour}}
+\makeatletter
+\def\@@rubrichead#1{%
+  \makebox[\linewidth][l]{\@rubricfont #1\hspace{0.8em}%
+    {\color{SwishLineColour}\leaders\hrule height 0.62ex depth -0.5ex\hfill}}}
+\makeatother
+\setlength{\rubricspace}{3pt}
+\setlength{\rubricafterspace}{2pt}
+\keyfont{\color{MarkerColour}\small\sffamily}
+\prefix{\color{MarkerColour}\textbullet}
+\newcommand{\prefixmarker}[1]{\prefix{{\color{MarkerColour}#1}}}
+\subrubricfont{\normalsize\bfseries\sffamily}
+
+% Bullet lists inside rubric entries
+\setlist[itemize]{leftmargin=1.1em, topsep=1pt, itemsep=0pt, parsep=0pt, label={\color{MarkerColour}\textbullet}}
+
+% Publication highlighting needs biblatex; kept as a no-op so the template's \mynames line still compiles.
+\providecommand{\mynames}[1]{}
+\endinput

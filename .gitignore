@@ -1,0 +1,30 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Personal data: everyone's knowledge base, CV imports and applications stay on this machine
+# (examples/demo/ is fictional and is kept). cv.local.yaml says where people/ lives here.
+/cv.local.yaml
+/people/
+/profile/
+/applications/
+/my-layouts/*
+!/my-layouts/README.md
+
+# Third-party reading the method was distilled from: copyrighted by its authors, so it is not
+# redistributed here. expert-knowledge/README.md lists the sources.
+/expert-knowledge/*
+!/expert-knowledge/README.md
+
+# Claude Code settings for one machine
+.claude/settings.local.json
+
+# LaTeX build output
+*.aux
+*.log
+*.out
+*.synctex.gz
+*.fls
+*.fdb_latexmk

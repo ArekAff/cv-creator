@@ -1,0 +1,17 @@
+applications:
+- id: 2026-10-30_vantaro-logistics_senior-data-analyst
+  company: Vantaro Logistics
+  role: Senior Data Analyst
+  status: draft
+  link: https://careers.example.com/vantaro/senior-data-analyst
+  location: Kraków
+  work_mode: hybrid
+  deadline: '2026-11-20'
+  created: '2026-10-30'
+  template: jakes
+  cv_pdf: Aleksandra_Nowak_CV_Vantaro_Logistics_2026-10-31.pdf
+  headline: Data Analyst · Forecasting, Power BI and dbt · Retail and Logistics
+  history:
+  - date: '2026-10-30'
+    status: draft
+    note: created

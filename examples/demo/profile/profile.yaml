@@ -1,0 +1,26 @@
+# DEMO DATA — a fictional person, used by `uv run cv selftest` and as a format reference.
+schema_version: 1
+person:
+  name: Aleksandra Nowak
+  headline: "Data analyst who builds the reports people actually open"
+  location: Kraków, Poland
+  email: aleksandra.nowak@example.com
+  phone: "+48 600 100 200"
+  links:
+    - {kind: linkedin, url: "https://www.linkedin.com/in/aleksandra-nowak-example"}
+    - {kind: github, url: "https://github.com/anowak-example"}
+  photo: ""
+languages:
+  - {language: Polish, level: native}
+  - {language: English, level: C1}
+  - {language: German, level: A2}
+preferences:
+  target_roles: [Senior Data Analyst, Analytics Engineer]
+  industries: [logistics, retail, e-commerce]
+  locations: [Kraków, remote within Poland]
+  work_mode: hybrid
+  cv_language: en
+  paper: a4
+  photo_on_cv: false
+  avoid: [date of birth, marital status]
+  notes: "Prefers roles close to operations teams; not interested in pure marketing analytics."

@@ -1,0 +1,30 @@
+[project]
+name = "cv-creator"
+version = "1.0.0"
+description = "Tailored LaTeX CVs built from sense-making career interviews conducted by a Claude agent."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "jinja2>=3.1",
+    "pypdf>=4.0",
+    "pyyaml>=6.0",
+]
+
+[project.scripts]
+cv = "cvtool.cli:main"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+]
+
+[build-system]
+requires = ["uv_build>=0.9.24,<0.10.0"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "cvtool"
+module-root = ""
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

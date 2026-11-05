@@ -1,0 +1,70 @@
+round: 2
+track: technical
+verdict: pass
+total: 90
+scores:
+  relevance: {score: 18, max: 20}
+  keywords: {score: 18, max: 20}
+  evidence: {score: 17, max: 20}
+  summary: {score: 9, max: 10}
+  skills: {score: 10, max: 10}
+  format: {score: 9, max: 10}
+  language: {score: 9, max: 10}
+blockers: []
+findings:
+  - id: F1
+    severity: should
+    rule: T-4
+    where: experience[0].bullets[2]
+    problem: "The current-role bullet that proves ownership of the weekly reporting suite (the ad's 'build and own' and 'ownership') still has no result, because the only usage figure (all 6 regional managers every week) dates from January 2023 and is already used in experience[1] (round-1 F3)."
+    fix: "Once she has given them, add who opens the suite today and how often, in her own figures; T001 and P01 hold nothing current. The page has about 6pt left, so if the bullet wraps to a second line, take the room from experience[0].bullets[3] unless that line has gained a result (F4)."
+    needs_input: true
+    question: "It's a Monday morning at Lumina this autumn and the weekly commercial reports have just refreshed. Who opens them, and about how many people is that?"
+  - id: F2
+    severity: should
+    rule: N-5
+    where: experience[0]
+    problem: "The ad's fifth duty is mentoring two junior analysts, but the CV can only show shift-leader training (2021) and volunteer workshops, because the knowledge base has nothing on helping analysts at work (round-1 F4)."
+    fix: "If she has helped a newer analyst at Lumina, add one P01 bullet with the scope in her own words (how many people, what they could do afterwards) and take the line from experience[0].bullets[3] unless that line has gained a result by then. If not, leave it: experience[2].bullets[1] and the volunteering entry cover R10 honestly."
+    needs_input: true
+    question: "Has there been a time at Lumina when someone newer in the analytics team was learning something from you? If so, take me to that moment: what's happening?"
+  - id: F3
+    severity: could
+    rule: T-10
+    where: summary
+    problem: "The summary's first line breaks as 'around the decisions operations / teams make every week', so the most-read line on the page first reads as a noun stack ('decisions operations teams')."
+    fix: "Add one word to her draft: 'around the decisions that operations teams make every week'. If the summary then runs to five lines, shorten 'At Lumina Retail,' to 'At Lumina,' (the employer is named in full in the Experience heading just below) so it stays at four lines on the full page."
+    needs_input: false
+  - id: F4
+    severity: could
+    rule: T-4
+    where: experience[0].bullets[3]
+    problem: "The data-quality line added this round (P01, answering the ad's 'reliable and tested' reporting) is a bare duty with no tool, scale or result, so it is the thinnest line in the most relevant role."
+    fix: "Once she has described them, add what the checks catch or prevent, or how often they run, in her own words and figures (P01 records only the duty). Until then the line can stay, but it is the first to give up if F1, F2 or F5 needs room."
+    needs_input: true
+    question: "Think of the last time one of your data-quality checks on the order pipeline flagged a problem. What's happening at that moment?"
+  - id: F5
+    severity: could
+    rule: C-5
+    where: experience
+    problem: "The ad's core is weekly capacity planning (how many people, trucks and sort lines each hub needs) through a real peak season, and the knowledge base records no planning or peak-season work, so the CV can't speak to it."
+    fix: "If she has such work, record it as a trail and add one bullet, in her own figures, to the role where it happened, taking the line from experience[0].bullets[3] if needed. If she has none, leave it: nothing on the page claims it."
+    needs_input: true
+    question: "Has there been a peak period, at Vistula Logistics or at Lumina, when you were working out how many people, shifts or how much stock would be needed? If so, take me to that moment: what's happening?"
+  - id: F6
+    severity: could
+    rule: N-5
+    where: volunteering[0].bullets[0]
+    problem: "The mentoring bullet still has no scale (people per workshop, or workshops run since October 2021), so it reads as a duty rather than proof (round-1 F7)."
+    fix: "Add her figure for participants or for workshops run, keeping the bullet on one line."
+    needs_input: true
+    question: "Picture the most recent Data Girls Kraków workshop you ran. How many people are in the room?"
+  - id: F7
+    severity: could
+    rule: C-7
+    where: experience[0].bullets[0]
+    problem: "The ad's first duty is to 'build and own' forecasts; the bullet shows she built one in 2024, but whether it ran again and who owns it now is still T002's open question (round-1 F8)."
+    fix: "If she has run the model again since 2024, say so in her words in this bullet, provided it still fits the page. Don't imply ownership until she confirms it."
+    needs_input: true
+    question: "It's spring 2025 and the buyers are planning the garden range again. What's happening with your forecast model at that point?"
+summary: "Both round-1 shoulds and both input-free coulds are fixed without side effects: the summary now echoes the ad's 'decisions' in her own words, the ownership bullet is one clean sentence, 'self-service' and 'Google Cloud Platform' match the ad, and every claim still traces to the knowledge base on one clean page. What holds it back now needs her input: no current result on the reporting-suite and data-quality lines, no mentoring of analysts at work, no workshop scale, and nothing yet on peak-season or capacity planning."

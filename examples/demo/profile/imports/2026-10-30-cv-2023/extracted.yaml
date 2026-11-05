@@ -1,0 +1,45 @@
+# DEMO DATA — what Claude read out of original.md (verbatim facts and bullets, nothing improved).
+source: {file: original.md, language: en, dated: 2023-02}
+person:
+  name: Aleksandra Nowak
+  location: Kraków, Poland
+  email: aleksandra.nowak@example.com
+  phone: "+48 600 100 200"
+  links: [linkedin.com/in/aleksandra-nowak-example]
+summary: "Junior data analyst who loves turning messy spreadsheets into clear reports."
+positions:
+  - title: Junior Data Analyst
+    organization: Lumina Retail
+    location: Kraków
+    start: 2022-04
+    end: present
+    bullets:
+      - "Rebuilt the weekly regional sales report in Power BI for the regional managers"
+      - "Automated the finance month-end SQL extracts, cutting the close from 2 days to 3 hours"
+  - title: Junior Business Analyst
+    organization: Vistula Logistics
+    location: Kraków
+    start: 2020-07
+    end: 2022-03
+    bullets:
+      - "Built an hourly picking-accuracy report for shift leaders in two warehouses"
+      - "Mapped the picking and packing process with the operations team and removed 3 redundant scans"
+  - title: Barista
+    organization: Rynek Coffee
+    type: employment
+    location: Kraków
+    start: 2016-09
+    end: 2018-06
+    bullets:
+      - "Trained 4 new baristas and ran the weekend shift"
+education:
+  - {degree: MSc, field: Applied Mathematics, institution: AGH University of Krakow, start: 2018, end: 2020}
+  - {degree: BSc, field: Econometrics, institution: Krakow University of Economics, start: 2015, end: 2018}
+certifications:
+  - {name: Tableau Desktop Specialist, issuer: Tableau, date: 2021}
+skills: [SQL, Excel, Power BI, Tableau, VBA, Python]
+languages:
+  - {language: Polish, level: native}
+  - {language: English, level: C1}
+  - {language: German, level: B1}
+interests: [Bouldering, film photography]

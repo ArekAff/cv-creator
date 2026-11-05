@@ -1,0 +1,64 @@
+# DEMO DATA — a fully explored strategic trail (sense-making interview, steps 1-3).
+id: T001
+title: "Rebuilding the Monday regional report"
+linked_to: [P02, P01]
+responsibility: "Weekly sales and margin report for the regional managers"
+why_chosen: "Highest-value responsibility of the junior role; she called it 'the thing I'm proudest of'."
+timeframe: {start: 2022-09, end: 2023-01}
+goal: "A Monday report the six regional managers actually open and act on"
+status: explored
+context: >
+  Every Monday the regional managers received a 40-tab Excel pack that took her about six hours to
+  prepare by copy-pasting SQL extracts. Nobody had asked whether anyone read it.
+actions:
+  - {id: A1, when: 2022-09, actor: other, action: "Head of Commercial asks why margin questions keep coming by email"}
+  - {id: A2, when: 2022-09, actor: self, action: "Sits in three regional Monday meetings and notes which numbers are used"}
+  - {id: A3, when: 2022-10, actor: self, action: "Lists the five numbers the managers actually discuss"}
+  - {id: A4, when: 2022-10, actor: self, action: "Builds a one-page Power BI prototype with those five KPIs"}
+  - {id: A5, when: 2022-11, actor: self, action: "Tests the prototype with two managers"}
+  - {id: A6, when: 2022-12, actor: self, action: "Moves the SQL extracts into dbt models with tests on PostgreSQL"}
+  - {id: A7, when: 2023-01, actor: self, action: "Rolls the report out to all six regions"}
+  - {id: A8, when: 2023-01, actor: self, action: "Switches off the Excel pack"}
+gaps:
+  - after: A1
+    situation: "Feels exposed: the pack is her work and nobody seems to use it."
+    questions: "Are they reading anything at all? What do they look at on Monday?"
+    emotions: "Embarrassed, then curious."
+    wishes: "Wants to see the meeting with her own eyes instead of guessing."
+    intentions: "Decides to ask to sit in on the Monday meetings rather than send a survey."
+    quotes: ["I didn't want another survey, I wanted to see the Monday meeting."]
+  - after: A2
+    situation: "In the meeting rooms, laptop closed, writing down every number a manager says aloud."
+    questions: "Why does everyone open the same three tabs? What are they doing on paper?"
+    emotions: "Relief that the problem is simpler than she feared."
+    wishes: "Hopes the list is short enough for one page."
+    intentions: "Counts mentions per number across the three meetings."
+    quotes: ["They all scrolled past thirty-five tabs to find the same five numbers."]
+  - after: A5
+    situation: "Two managers try the prototype on their phones before the meeting."
+    questions: "Will they trust numbers that look different from the Excel?"
+    emotions: "Nervous about the reconciliation."
+    wishes: "Wants one manager to say 'this is the same as before, just faster'."
+    intentions: "Adds a small reconciliation table and decides the refresh must be automatic before rollout."
+  - after: A7
+    situation: "All six regions on the new report; the Excel still being produced 'just in case'."
+    questions: "When can I stop producing both?"
+    emotions: "Impatient."
+    wishes: "Wants the old pack gone so there is one version of the truth."
+    intentions: "Agrees a switch-off date with the Head of Commercial after four clean weeks."
+outcomes:
+  - {text: "Preparation time for the Monday report went from about 6 hours to 30 minutes a week", metric: "6 h → 0.5 h per week", evidence: user_stated}
+  - {text: "All 6 regional managers used the new report every week by January 2023", metric: "6/6 regions", evidence: documented, source: "evidence/2023-01-head-of-commercial-email.pdf"}
+  - {text: "Copy-paste errors disappeared after the dbt tests went in (two corrections in the previous quarter, none after)", metric: "2 → 0 corrections per quarter", evidence: user_stated}
+competencies:
+  - {name: stakeholder discovery, evidence: "Sat in three Monday meetings before designing anything (A2-A3)"}
+  - {name: data modelling and automation, evidence: "dbt models with tests on PostgreSQL replaced manual extracts (A6)"}
+  - {name: change management, evidence: "Ran both versions for four weeks, then agreed a switch-off date (A7-A8)"}
+skills_used: [Power BI, DAX, SQL, SQL window functions, PostgreSQL, dbt, Excel, stakeholder interviews]
+keywords: [Monday report, regional managers, dashboard, KPI, reporting automation, data model, self-service BI, stakeholder management]
+accomplishments:
+  - "Rebuilt the weekly regional report around the five KPIs six regional managers actually used, cutting preparation from ~6 hours to 30 minutes a week"
+  - "Moved manual SQL extracts into tested dbt models on PostgreSQL, eliminating copy-paste errors in commercial reporting"
+  - "Ran the old and new reports in parallel for four weeks and retired the 40-tab Excel pack once all 6 regions had switched"
+open_questions: []
+sessions: [2026-10-30-career-interview-1]

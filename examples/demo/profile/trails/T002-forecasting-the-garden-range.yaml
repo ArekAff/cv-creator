@@ -1,0 +1,47 @@
+# DEMO DATA — an explored trail with a gap only partly probed.
+id: T002
+title: "Forecasting demand for the summer garden range"
+linked_to: [P01]
+responsibility: "Demand forecasts for the buying team (seasonal ranges)"
+why_chosen: "Most valuable work in the current role; won the Analytics Impact Award."
+timeframe: {start: 2024-02, end: 2024-06}
+goal: "Order quantities for the garden range that do not end in a markdown sale"
+status: explored
+context: >
+  Buyers ordered the summer garden range from last year's sales plus a gut-feel uplift. In 2023 about a
+  fifth of the range ended up in the autumn markdown.
+actions:
+  - {id: A1, when: 2024-02, actor: other, action: "Category director asks for 'a proper forecast' after the 2023 markdown"}
+  - {id: A2, when: 2024-02, actor: self, action: "Joins the weekly buying meeting to learn how orders are placed"}
+  - {id: A3, when: 2024-03, actor: self, action: "Builds a gradient-boosting model in Python with weather and promotion features"}
+  - {id: A4, when: 2024-03, actor: self, action: "Back-tests the model on the 2022 and 2023 seasons"}
+  - {id: A5, when: 2024-04, actor: self, action: "Presents ranges, not single numbers, to the buyers"}
+  - {id: A6, when: 2024-06, actor: self, action: "Reviews the season with the category director"}
+gaps:
+  - after: A2
+    situation: "Watching three buyers argue about the same parasol using different spreadsheets."
+    questions: "Which decision am I actually supporting: how many to order, or when to re-order?"
+    emotions: "Overwhelmed by how many products there are."
+    wishes: "Wants something the buyers can disagree with in a useful way."
+    intentions: "Decides to forecast at product-family level first and to show uncertainty ranges."
+  - after: A4
+    situation: "Back-test results on screen; the model beats last-year-plus-uplift on most families."
+    questions: "How do I explain a range to someone who wants one number?"
+    emotions: "Excited, a bit worried about the families where it is worse."
+    wishes: "Hopes the buyers will use the low end of the range for risky items."
+    intentions: "Prepares a one-page explainer with three example products."
+outcomes:
+  - {text: "Forecast error (MAPE) on the garden range fell from 31% to 19% in the back-test", metric: "MAPE 31% → 19%", evidence: documented, source: "evidence/2024-forecast-review.pdf"}
+  - {text: "End-of-season markdown stock on the range was about 12% lower than in 2023", metric: "−12% markdown stock", evidence: user_stated}
+  - {text: "Received Lumina's Analytics Impact Award (December 2024)", evidence: documented}
+competencies:
+  - {name: forecasting, evidence: "Gradient-boosting model with weather and promotion features, back-tested on two seasons (A3-A4)"}
+  - {name: explaining analysis to non-technical people, evidence: "Ranges and a one-page explainer for buyers (A5)"}
+skills_used: [Python, pandas, scikit-learn, SQL, demand forecasting, Power BI]
+keywords: [demand forecasting, demand planning, machine learning, time series, buyers, inventory, markdown, back-testing]
+accomplishments:
+  - "Built a demand forecast for the summer garden range in Python (gradient boosting with weather and promotion features), cutting forecast error from 31% to 19% MAPE"
+  - "Introduced forecast ranges and a one-page explainer for the buying team; end-of-season markdown stock fell about 12% year on year"
+open_questions:
+  - "Did the model run again in 2025, and who owns it now?"
+sessions: [2026-10-30-career-interview-1]

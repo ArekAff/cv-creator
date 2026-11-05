@@ -1,0 +1,16 @@
+track: technical
+family: data & analytics
+seniority: senior
+ats_likely: true
+confidence: high
+signals:
+  - "title: Senior Data Analyst, Network Planning"
+  - "must-haves: advanced SQL (window functions, data modelling), Python forecasting, Power BI/Tableau, dbt; 4 of 7 are tools, a 5th is 4+ years of data analytics"
+  - "duties: build parcel-volume forecasts, design Power BI dashboards, model data in BigQuery + dbt"
+  - "nice-to-haves: GCP/BigQuery, Airflow (2 of 3 are tools)"
+  - "people side: work with non-technical operations teams recurs (intro, 2 duties, a must-have); mentor two junior analysts"
+  - "outcome in the ad's words: turns operational data into decisions our hub managers trust"
+borrow: [N-1, N-5]          # N-1 results in the ad's terms (decisions hub managers trust); N-5 a bullet proving ops stakeholder work and mentoring
+career_change: false
+playbook: method/tailoring-technical.md
+decided_by: listing-classifier

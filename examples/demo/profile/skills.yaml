@@ -1,0 +1,14 @@
+# DEMO DATA — skills inventory with evidence.
+skills:
+  - {name: SQL, category: technical, level: advanced, years: 6, last_used: 2026, evidence: [T001, T002, P01, P03], aliases: [PostgreSQL, SQL Server, T-SQL], notes: "window functions weekly in the dbt models (gap interview 2026-10-30)"}
+  - {name: Python, category: technical, level: advanced, years: 4, last_used: 2026, evidence: [T002, PR01], aliases: [pandas, scikit-learn]}
+  - {name: Power BI, category: tool, level: expert, years: 5, last_used: 2026, evidence: [T001, T003, C01], aliases: [DAX, Power Query]}
+  - {name: dbt, category: tool, level: intermediate, years: 3, last_used: 2026, evidence: [T001, C02]}
+  - {name: Excel, category: tool, level: expert, years: 8, last_used: 2026, evidence: [T003, P02]}
+  - {name: Demand forecasting, category: domain, level: advanced, years: 3, last_used: 2025, evidence: [T002, E01], aliases: [forecasting, demand planning, time series]}
+  - {name: Stakeholder management, category: soft, level: advanced, evidence: [T001, T002, T003], aliases: [stakeholder engagement, working with business teams]}
+  - {name: Data visualisation, category: methodology, level: advanced, evidence: [T001, T003, PR01], aliases: [data visualization, dashboards, reporting]}
+  - {name: Workshop facilitation, category: soft, level: intermediate, evidence: [T003, P04], aliases: [training, teaching]}
+  - {name: Git, category: tool, level: intermediate, evidence: [PR01, P01]}
+  - {name: Streamlit, category: tool, level: basic, evidence: [PR01]}
+  - {name: Google Cloud, category: tool, level: basic, evidence: [C03], aliases: [GCP, Google Cloud Platform, BigQuery], notes: "certification in progress; no production use yet"}

@@ -1,0 +1,88 @@
+# DEMO DATA — career scaffold (who / what / where / when).
+positions:
+  - id: P01
+    type: employment
+    title: Data Analyst
+    organization: Lumina Retail
+    org_context: "home & garden e-commerce retailer, ~400 people, 6 sales regions"
+    location: Kraków, Poland
+    start: 2023-07
+    end: present
+    team: "analytics team of 5, reporting to the Head of Commercial Analytics"
+    responsibilities:
+      - {text: "Demand forecasts for the buying team (seasonal ranges)", priority: high, trails: [T002]}
+      - {text: "Own the weekly commercial reporting suite", priority: high, trails: [T001]}
+      - {text: "Ad-hoc analyses for marketing and pricing", priority: medium}
+      - {text: "Data-quality checks on the order pipeline", priority: medium}
+    tools: [SQL, PostgreSQL, Python, pandas, scikit-learn, Power BI, dbt, Git]
+  - id: P02
+    type: employment
+    title: Junior Data Analyst
+    organization: Lumina Retail
+    org_context: "promoted to Data Analyst in July 2023"
+    location: Kraków, Poland
+    start: 2022-04
+    end: 2023-06
+    team: "analytics team of 4"
+    responsibilities:
+      - {text: "Weekly sales and margin report for the regional managers", priority: high, trails: [T001]}
+      - {text: "SQL extracts for finance month-end", priority: low}
+    tools: [SQL, Excel, Power BI, DAX, dbt]
+  - id: P03
+    type: employment
+    title: Junior Business Analyst
+    organization: Vistula Logistics
+    org_context: "third-party logistics operator, 2 warehouses, ~250 warehouse staff"
+    location: Kraków, Poland
+    start: 2020-07
+    end: 2022-03
+    team: "operations excellence team of 3"
+    responsibilities:
+      - {text: "Warehouse KPI reporting for shift leaders", priority: high, trails: [T003]}
+      - {text: "Process maps for picking and packing", priority: medium}
+      - {text: "Excel and Power Query automation for the operations office", priority: medium}
+    tools: [Excel, Power Query, Power BI, SQL Server]
+  - id: P04
+    type: volunteer
+    title: Volunteer Data Mentor
+    organization: Data Girls Kraków
+    org_context: "community workshops teaching women to analyse data"
+    location: Kraków, Poland
+    start: 2021-10
+    end: present
+    responsibilities:
+      - {text: "Run monthly beginner SQL and Power BI workshops", priority: medium}
+    tools: [SQL, Power BI]
+education:
+  - id: E01
+    degree: MSc
+    field: Applied Mathematics (Data Science track)
+    institution: AGH University of Krakow
+    location: Kraków, Poland
+    start: 2018-10
+    end: 2020-07
+    thesis: "Short-term demand forecasting for perishable goods"
+    grade: "very good (5.0)"
+  - id: E02
+    degree: BSc
+    field: Econometrics
+    institution: Krakow University of Economics
+    location: Kraków, Poland
+    start: 2015-10
+    end: 2018-06
+certifications:
+  - {id: C01, name: "Microsoft Certified: Power BI Data Analyst Associate", issuer: Microsoft, date: 2023-05, status: completed}
+  - {id: C02, name: dbt Fundamentals, issuer: dbt Labs, date: 2024-02, status: completed}
+  - {id: C03, name: "Google Cloud Professional Data Engineer", issuer: Google Cloud, date: 2026-12, status: in-progress}
+projects:
+  - id: PR01
+    name: Tram Delay Explorer
+    role: Author
+    start: 2023-03
+    end: 2023-08
+    description: "Open-data app showing where and when Kraków trams run late"
+    tools: [Python, pandas, Streamlit, GTFS]
+    link: "https://github.com/anowak-example/tram-delays"
+awards:
+  - {id: AW01, name: "Analytics Impact Award", issuer: Lumina Retail, date: 2024-12, description: "for the garden-range forecast"}
+publications: []

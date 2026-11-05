@@ -1,0 +1,12 @@
+# DEMO DATA — requirement -> evidence matrix after the gap interview (the guide's "cheat sheet").
+# status: strong | partial | gap ; every evidence ref is an id in the knowledge base.
+- {req: R01, status: strong, evidence: [P01, P02, P03], note: "6+ years across retail and logistics"}
+- {req: R02, status: strong, evidence: [T001, P01], note: "dbt models on PostgreSQL; window functions confirmed in gap interview"}
+- {req: R03, status: strong, evidence: [T002, PR01], note: "gradient boosting forecast, MAPE 31% -> 19%"}
+- {req: R04, status: strong, evidence: [T001, T003, C01], note: "PL-300 certified; two dashboards with adoption numbers"}
+- {req: R05, status: strong, evidence: [T001, C02]}
+- {req: R06, status: strong, evidence: [T003, T001, T002], note: "T003 surfaced in the gap interview: night shifts with shift leaders"}
+- {req: R07, status: strong, evidence: [], note: "Polish native, English C1 (profile.yaml)"}
+- {req: R08, status: partial, evidence: [C03], note: "certification in progress, no production use; say so honestly"}
+- {req: R09, status: gap, evidence: [], note: "no orchestration experience; user is fine leaving it out"}
+- {req: R10, status: strong, evidence: [P04, T003], note: "volunteer mentor + trained 8 shift leaders"}

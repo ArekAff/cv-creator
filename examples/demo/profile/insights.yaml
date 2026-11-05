@@ -1,0 +1,23 @@
+# DEMO DATA — cross-trail synthesis (Sagis step 2).
+patterns:
+  - pattern: "Before building anything, goes and watches the people who will use the numbers"
+    seen_in: [T001, T003]
+    cv_use: "summary; evidence for stakeholder management"
+  - pattern: "Replaces manual, error-prone reporting with automated pipelines, then retires the old artefact"
+    seen_in: [T001, T003]
+    cv_use: "bullets about automation and adoption"
+  - pattern: "Measures whether the work is used, not only whether it is delivered"
+    seen_in: [T001, T002, T003]
+    cv_use: "adoption numbers in bullets"
+strengths:
+  - Turns vague reporting requests into a few decisions people actually make
+  - Comfortable explaining models to non-technical buyers and shift leaders
+values:
+  - "'work that people actually use' (her words, said three times)"
+  - calm, predictable weeks for operations teams
+working_style: "Starts on the floor or in the meeting room, prototypes fast, then automates."
+career_direction: "Senior analyst or analytics engineer close to operations, in logistics or retail."
+recurring_themes:
+  - "'the Monday meeting': appears in T001 and T003 as the moment reports are judged"
+summary_drafts:
+  - "Data analyst with 6 years in retail and logistics who builds forecasts and reports around the decisions operations teams make every week."
